@@ -83,7 +83,6 @@ func (s *Signer) RoundTrip(req *http.Request) (*http.Response, error) {
 		return s.transport.RoundTrip(req)
 	}
 	s.logger.Printf("Receiving request for signing: %+v", req)
-	req.URL.Scheme = "https"
 	if strings.Contains(req.URL.RawPath, "%2C") {
 		s.logger.Printf("Escaping path for URL path '%s'", req.URL.RawPath)
 		req.URL.RawPath = rest.EscapePath(req.URL.RawPath, false)
